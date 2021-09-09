@@ -6,22 +6,16 @@
 <hr>
 <div class="row">
     <div class="col-xs-12">
-        <a href="#" class="list-group-item clearfix" *ngFor="let recipe of recipes">
-            <div class="pull-left">
-                <h4 class="list-group-item-heading"> {{ recipe.name }}</h4>
-                <p class="list-group-item-text"> {{ recipe.description }}</p>
-            </div>
-       
-            <span class="pull-right">
-                <img 
-                      [src]="recipe.imagePath" 
-                      alt="{{ recipe.name }}" 
-                      class="img-responsive" 
-                      style="max-height: 50px;"
-                >
-            </span>
-        </a>
-        <app-recipe-item></app-recipe-item>
+        <app-recipe-item  
+            *ngFor="let recipeEl of recipes"
+            [recipe]="recipeEl" 
+            (recipeSelected)="onRecipeSelected(recipeEl)"
+        ></app-recipe-item>
+
+        <!--  (recipeSelected)="onRecipeSelected()" here we need to emit en other event up to the recipe father that is the grandfather 
+        of recipe-item from where we start emitting the event -->
     </div>
 </div>
+
+<!-- [recipe] refers to (is binded to) @Input() recipe: Recipe in recipe-item component -->
 
