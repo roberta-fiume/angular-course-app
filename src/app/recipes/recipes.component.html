@@ -7,10 +7,13 @@
         <!-- we could also put selectedRecipe = $event in a method and replace this with the method created -->
     </div>
     <div class="col-md-7">
+        <!-- when we have selectedRecipe (if selectedRecipe is NOT undefined), we pass it down to recipes-detail -->
         <app-recipes-detail
             *ngIf="selectedRecipe; else infoText"
+            [recipe]="selectedRecipe"
         ></app-recipes-detail>
-
+        <!-- if selectedRecipe is set, than it displays the recipe details otherwise it displays the ng-template paragraph -->
+        <!-- [recipe]="selectedRecipe: we bind the property recipe to selectedRecipe -->
         <ng-template #infoText>
             <p>Please select a Recipe!</p>
         </ng-template>
