@@ -1,12 +1,25 @@
 import { EventEmitter } from '@angular/core';
+import { Ingredient } from '../shared/ingredient.model';
 import { Recipe } from './recipe.model'
 
 export class RecipeService {
     recipeSelected = new EventEmitter<Recipe>();
 
   private recipes: Recipe[] = [
-        new Recipe('A Test Recipe', 'This is a simple test', 'https://keyassets-p2.timeincuk.net/wp/prod/wp-content/uploads/sites/63/2014/08/Ciabatta-1842-x-1212.jpg' ),
-        new Recipe('A Test Recipe', 'This is a simple test', 'https://keyassets-p2.timeincuk.net/wp/prod/wp-content/uploads/sites/63/2014/08/Ciabatta-1842-x-1212.jpg' )
+        new Recipe('Tasty recipe', 
+        'This is a simple test', 
+        'https://keyassets-p2.timeincuk.net/wp/prod/wp-content/uploads/sites/63/2014/08/Ciabatta-1842-x-1212.jpg', 
+        [
+          new Ingredient('Bread', 1),
+          new Ingredient('Olive Oil', 1)
+        ] ),
+        new Recipe('Delicious recipe', 
+        'This is a simple test', 
+        'https://images.immediate.co.uk/production/volatile/sites/30/2020/08/chorizo-mozarella-gnocchi-bake-cropped-9ab73a3.jpg?quality=90&resize=556,505', 
+        [
+          new Ingredient('Gnocchi', 1),
+          new Ingredient('Tomato Sauce', 1)
+        ] )
       ];
 
       getRecipes() {
