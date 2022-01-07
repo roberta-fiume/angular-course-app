@@ -1,7 +1,9 @@
-import { EventEmitter } from '@angular/core';
+import { EventEmitter, Injectable } from '@angular/core';
 import { Ingredient } from '../shared/ingredient.model';
+import { ShoppingListService } from '../shopping-list/shopping-list.service';
 import { Recipe } from './recipe.model'
 
+@Injectable()
 export class RecipeService {
     recipeSelected = new EventEmitter<Recipe>();
 
@@ -22,9 +24,15 @@ export class RecipeService {
         ] )
       ];
 
+      constructor(private slService: ShoppingListService) {}
+
       getRecipes() {
         return this.recipes.slice(); //with the slice method this will return a new array that is an exact copy of the array in this file so we cannot access the array on this file
                                     //from outside, we only get a copy.
+    }
+
+    addIngredientsToShoppingList(ingredients: Ingredient[]) {
+      this.slService.addIngredients(ingredients);
     }
 }
 
